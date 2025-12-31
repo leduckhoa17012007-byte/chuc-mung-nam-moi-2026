@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Chúc mừng năm mới 2026</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+    background: radial-gradient(circle at top, #0b3c7a, #000814);
+    color:white;
+    font-family: Arial, sans-serif;
+    min-height:200vh;
+    text-align:center;
+    overflow-x:hidden;
+}
+
+/* ===== TUYẾT ===== */
+.snow{
+    position:fixed;
+    top:-10px;
+    color:white;
+    font-size:14px;
+    animation: fall linear infinite;
+    z-index:1;
+}
+@keyframes fall{
+    to{transform:translateY(110vh)}
+}
+
+/* ===== NỘI DUNG ===== */
+#container{
+    position:relative;
+    z-index:5;
+    padding:40px 20px;
+}
+
+h1{
+    color:gold;
+    font-size:42px;
+    margin-bottom:30px;
+    text-shadow:0 0 15px gold;
+}
+
+#text{
+    max-width:900px;
+    margin:auto;
+    font-size:20px;
+    line-height:1.8;
+    white-space:pre-line;
+    min-height:300px;
+}
+
+/* ===== HỘP QUÀ MỚI ===== */
+#gift-area{
+    margin-top:60px;
+    display:none;
+}
+
+#gift{
+    width:160px;
+    height:130px;
+    background:linear-gradient(#e63946,#c1121f);
+    border-radius:15px;
+    margin:40px auto;
+    position:relative;
+    cursor:pointer;
+    box-shadow:0 15px 40px rgba(255,0,0,.6);
+    animation:bounce 1.5s infinite;
+}
+
+/* nắp hộp */
+#gift::before{
+    content:"";
+    position:absolute;
+    width:170px;
+    height:35px;
+    background:#f77f00;
+    top:-35px;
+    left:-5px;
+    border-radius:12px;
+    box-shadow:0 8px 20px rgba(0,0,0,.4);
+}
+
+/* dây dọc */
+.ribbon-v{
+    position:absolute;
+    width:22px;
+    height:130px;
+    background:gold;
+    left:50%;
+    transform:translateX(-50%);
+}
+
+/* dây ngang */
+.ribbon-h{
+    position:absolute;
+    height:22px;
+    width:160px;
+    background:gold;
+    top:50%;
+    transform:translateY(-50%);
+}
+
+@keyframes bounce{
+    0%,100%{transform:translateY(0)}
+    50%{transform:translateY(-12px)}
+}
+
+#click{
+    font-size:28px;
+    color:gold;
+    animation:blink 1s infinite;
+}
+@keyframes blink{50%{opacity:.4}}
+
+/* ===== ẢNH ===== */
+#photo{
+    display:none;
+    margin:70px auto;
+}
+#photo img{
+    max-width:85%;
+    border-radius:20px;
+    box-shadow:0 0 40px white;
+}
+</style>
+</head>
+
+<body>
+
+<!-- TUYẾT -->
+<script>
+for(let i=0;i<60;i++){
+    let s=document.createElement("div");
+    s.className="snow";
+    s.innerHTML="❄";
+    s.style.left=Math.random()*100+"vw";
+    s.style.animationDuration=3+Math.random()*5+"s";
+    s.style.fontSize=10+Math.random()*18+"px";
+    document.body.appendChild(s);
+}
+</script>
+
+<div id="container">
+<h1>🎉 Chúc mừng năm mới 2026 🎉</h1>
+
+<div id="text"></div>
+
+<div id="gift-area">
+    <div id="gift">
+        <div class="ribbon-v"></div>
+        <div class="ribbon-h"></div>
+    </div>
+    <div id="click">👉 BẤM VÀO HỘP QUÀ 🎁</div>
+</div>
+
+<div id="photo">
+    <img src="jpg/qr.jpg">
+</div>
+</div>
+
+<!-- NHẠC -->
+<audio id="music" loop>
+    <source src="music/ren.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+/* ===== CHỮ CHẠY ===== */
+const message =
+`Chúc các bạn lớp A1-K20 sẽ có một năm 2026 vui vẻ.
+
+Năm 2026 đến mang theo niềm tin, hy vọng và những khởi đầu tốt đẹp. Mong rằng năm mới sẽ là khoảng thời gian bạn tìm thấy sự bình yên trong tâm hồn, niềm vui trong từng khoảnh khắc nhỏ bé và động lực để tiếp tục vươn lên mỗi ngày.
+
+Chúc bạn luôn vững vàng trước thử thách, mạnh mẽ trước khó khăn và không ngừng tiến bước trên con đường mà bạn đã chọn. Mỗi nỗ lực trong hôm nay sẽ trở thành những thành quả rực rỡ trong tương lai.
+
+Code tôi copy từ ChatGPT nhưng tấm lòng tôi dành cho các bạn là thật ❤️`;
+
+let i=0;
+const speed=30;
+const textDiv=document.getElementById("text");
+
+function type(){
+    if(i<message.length){
+        textDiv.innerHTML+=message.charAt(i);
+        i++;
+        setTimeout(type,speed);
+    }else{
+        document.getElementById("gift-area").style.display="block";
+    }
+}
+type();
+
+/* ===== NHẠC (CHROME BẮT CLICK) ===== */
+document.addEventListener("click",()=>{
+    document.getElementById("music").play().catch(()=>{});
+},{once:true});
+
+/* ===== MỞ QUÀ ===== */
+document.getElementById("gift").onclick=()=>{
+    document.getElementById("photo").style.display="block";
+};
+</script>
+
+</body>
+</html>
